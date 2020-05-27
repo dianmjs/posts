@@ -9,14 +9,20 @@ import {
   Grid,
   Link,
   makeStyles,
+  IconButton,
 } from "@material-ui/core";
-import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ExpandLessTwoToneIcon from "@material-ui/icons/ExpandLessTwoTone";
+import ExpandMoreTwoToneIcon from "@material-ui/icons/ExpandMoreTwoTone";
 
 const useStyles = makeStyles((theme) => ({
   large: {
     width: theme.spacing(20),
     height: theme.spacing(20),
+  },
+  arrow: {
+    direction: "column",
+    justify: "center",
+    alignItems: "center",
   },
 }));
 
@@ -35,7 +41,7 @@ export default function Container(props) {
                 justify="center"
                 alignItems="center"
               >
-                <Grid item xs={2}>
+                <Grid item xs={6} sm={4}>
                   <ListItemAvatar>
                     <Avatar
                       variant="square"
@@ -44,14 +50,21 @@ export default function Container(props) {
                     />
                   </ListItemAvatar>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item container className={classes.arrow} xs={4} sm={2}>
                   <ListItemIcon>
-                    <ArrowDropUpIcon />
+                    <IconButton
+                      onClick={(e) => props.IncrementItem(e, props.id)}
+                    >
+                      <ExpandLessTwoToneIcon color="primary" />
+                    </IconButton>
+
                     {item.votes}
-                    <ArrowDropDownIcon />
+                    <IconButton>
+                      <ExpandMoreTwoToneIcon color="primary" />
+                    </IconButton>
                   </ListItemIcon>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12} sm={4}>
                   <Link href={item.url}>{item.title}</Link>
                   <ListItemText>{item.description}</ListItemText>
                   <ListItemAvatar>
