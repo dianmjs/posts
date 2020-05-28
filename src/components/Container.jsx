@@ -10,6 +10,7 @@ import {
   Link,
   makeStyles,
   IconButton,
+  Typography,
 } from "@material-ui/core";
 import ExpandLessTwoToneIcon from "@material-ui/icons/ExpandLessTwoTone";
 import ExpandMoreTwoToneIcon from "@material-ui/icons/ExpandMoreTwoTone";
@@ -20,9 +21,14 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(20),
   },
   arrow: {
-    direction: "column",
-    justify: "center",
+    "& > *": {
+      margin: theme.spacing(1),
+    },
     alignItems: "center",
+    display: "inline-flex",
+  },
+  button: {
+    textAlign: "center",
   },
 }));
 
@@ -41,7 +47,7 @@ export default function Container(props) {
                 justify="center"
                 alignItems="center"
               >
-                <Grid item xs={6} sm={4}>
+                <Grid item xs={6} sm={2} md={2}>
                   <ListItemAvatar>
                     <Avatar
                       variant="square"
@@ -50,26 +56,25 @@ export default function Container(props) {
                     />
                   </ListItemAvatar>
                 </Grid>
-                <Grid item container className={classes.arrow} xs={4} sm={2}>
-                  <ListItemIcon>
-                    <IconButton
-                      onClick={(e) => props.IncrementItem(e, props.id)}
-                    >
+                <Grid item xs={4} sm={3} md={2}>
+                  <div className={classes.button}>
+                    <IconButton onClick={() => props.IncrementItem(item.id)}>
                       <ExpandLessTwoToneIcon color="primary" />
                     </IconButton>
-
-                    {item.votes}
-                    <IconButton>
+                    <ListItemText>{item.votes}</ListItemText>
+                    <IconButton onClick={() => props.decrease(item.id)}>
                       <ExpandMoreTwoToneIcon color="primary" />
                     </IconButton>
-                  </ListItemIcon>
+                  </div>
                 </Grid>
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={4} md={4}>
                   <Link href={item.url}>{item.title}</Link>
                   <ListItemText>{item.description}</ListItemText>
-                  <ListItemAvatar>
-                    Escrito por : <Avatar src={item.writer_avatar_url} />
-                  </ListItemAvatar>
+
+                  <div className={classes.arrow}>
+                    <ListItemText>Escrito por :</ListItemText>
+                    <Avatar src={item.writer_avatar_url} />
+                  </div>
                 </Grid>
               </Grid>
             </ListItem>
