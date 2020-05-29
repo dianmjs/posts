@@ -86,7 +86,7 @@ export default function App() {
         <Grid item xs={6} sm={4}>
           <Button
             className={classes.borderButton}
-            variant="outlined"
+            variant="contained"
             color="secondary"
             onClick={sortByIdDesc}
             value={filter}
