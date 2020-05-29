@@ -28,9 +28,7 @@ export default function App() {
       return a.votes - b.votes;
     });
     setPost(sortList);
-    setFilter({
-      filter: false,
-    });
+    setFilter(false);
   };
 
   //Ordena Desc
@@ -39,9 +37,7 @@ export default function App() {
       return b.votes - a.votes;
     });
     setPost(sortDesc);
-    setFilter({
-      filter: true,
-    });
+    setFilter(true);
   };
   //incrementa el voto
   const IncrementItem = (param) => {
@@ -82,7 +78,7 @@ export default function App() {
             variant="outlined"
             color="primary"
             onClick={sortByIdAsc}
-            focusVisible={!filter}
+            value={!filter}
           >
             Ascendente
           </Button>
@@ -93,7 +89,7 @@ export default function App() {
             variant="outlined"
             color="secondary"
             onClick={sortByIdDesc}
-            focusVisible={filter}
+            value={filter}
           >
             Descendente
           </Button>
